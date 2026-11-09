@@ -264,4 +264,70 @@
               <li>Premium Finisher Medal</li>
             </ul>
           </div>
-          <a class="
+          <a class="button select-category" href="#register" data-category="5KM">Select 5KM</a>
+          </article>
+      </div>
+
+      <div class="register-wrap" id="register">
+        <div class="section-heading" style="margin-bottom:0;">
+          <span class="kicker">Secure your slot</span>
+          <h2>Ready to join the festival?</h2>
+          <p>Fill out the registration form below to submit your details for the selected race category.</p>
+        </div>
+        <div class="register-panel">
+          <h3 style="margin-top:0;font-size:1.5rem">Participant registration</h3>
+          <form id="registration-form">
+            <label>Full name<input name="name" autocomplete="name" placeholder="Your full name" required></label>
+            <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+            <label>Contact number<input name="phone" type="tel" autocomplete="tel" placeholder="Your mobile number" required></label>
+            <label>Race category
+              <select name="category" id="category-select" required>
+                <option value="">Select distance category</option>
+                <option value="3KM">3KM Run</option>
+                <option value="5KM">5KM Run</option>
+                <option value="10KM">10KM Run</option>
+              </select>
+            </label>
+            <label>Number of participants
+              <select name="participants" required>
+                <option value="">Select quantity</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option>
+              </select>
+            </label>
+            <button class="button" type="submit">SUBMIT REGISTRATION ↗</button>
+            <p class="form-note">Your information will be securely recorded once connected to an active registration backend.</p>
+            <div id="form-message" role="status">Thanks for registering! Your slot request has been logged locally.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span><strong>COLOR RUN</strong> · Run. Splash. Celebrate.</span>
+      <span>© <span id="year"></span> COLOR RUN. All rights reserved.</span>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Automatically select the category in the form dropdown when a category button is clicked
+    document.querySelectorAll(".select-category").forEach(button => {
+      button.addEventListener("click", function() {
+        const selectedCategory = this.getAttribute("data-category");
+        const categoryDropdown = document.getElementById("category-select");
+        if (categoryDropdown && selectedCategory) {
+          categoryDropdown.value = selectedCategory;
+        }
+      });
+    });
+
+    document.getElementById("registration-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      if (!this.reportValidity()) return;
+      document.getElementById("form-message").style.display = "block";
+    });
+  </script>
+</body>
+</html>
