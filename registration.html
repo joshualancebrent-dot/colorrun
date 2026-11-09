@@ -42,7 +42,7 @@
     .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
     .section-heading { max-width: 650px; }
     .kicker { color: #8b56d9; font-size: .75rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
-    h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); letter-spacing: -.065em; line-height: stroke; margin: 12px 0; }
+    h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); letter-spacing: -.065em; line-height: 1.1; margin: 12px 0; }
     .section-heading p { color: #656276; line-height: 1.7; }
     
     .register-panel { background: white; border: 1px solid #eeeaf3; padding: 36px; border-radius: 28px; box-shadow: 0 16px 50px #17152d0b; }
@@ -87,9 +87,9 @@
 
       <div class="register-panel">
         <form id="registration-form">
-          <label>Full name<input name="name" autocomplete="name" placeholder="Your full name" required></label>
-          <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
-          <label>Contact number<input name="phone" type="tel" autocomplete="tel" placeholder="Your mobile number" required></label>
+          <label>Full name<input name="name" id="form-name" autocomplete="name" placeholder="Your full name" required></label>
+          <label>Email address<input name="email" id="form-email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label>Contact number<input name="phone" id="form-phone" type="tel" autocomplete="tel" placeholder="Your mobile number" required></label>
           <label>Race category
             <select name="category" id="category-select" required>
               <option value="">Select distance category</option>
@@ -99,14 +99,14 @@
             </select>
           </label>
           <label>Number of participants
-            <select name="participants" required>
+            <select name="participants" id="form-participants" required>
               <option value="">Select quantity</option>
               <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option>
             </select>
           </label>
           <button class="button" type="submit">COMPLETE REGISTRATION ↗</button>
-          <p class="form-note">Your information will be securely recorded once connected to an active registration backend.</p>
-          <div id="form-message" role="status">Thanks for registering! Your slot request has been logged locally.</div>
+          <p class="form-note">Your registration details will be recorded directly into our official system.</p>
+          <div id="form-message" role="status">Thanks for registering! Your slot request has been recorded.</div>
         </form>
       </div>
     </div>
@@ -122,7 +122,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Auto-select category based on URL parameter (e.g. register.html?category=5KM)
+    // Auto-select category based on URL parameter (e.g. registration.html?category=5KM)
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('category');
     if (categoryParam) {
@@ -132,10 +132,48 @@
       }
     }
 
+    // Paste your Google Apps Script Web App URL below
+    const WEB_APP_URL = 'YOUR_GOOGLE_WEB_APP_URL_HERE';
+
     document.getElementById("registration-form").addEventListener("submit", function(event) {
       event.preventDefault();
       if (!this.reportValidity()) return;
-      document.getElementById("form-message").style.display = "block";
+
+      const submitButton = this.querySelector('button[type="submit"]');
+      const messageBox = document.getElementById('form-message');
+      
+      submitButton.textContent = "SUBMITTING...";
+      submitButton.disabled = true;
+
+      const formData = {
+        name: document.getElementById('form-name').value,
+        email: document.getElementById('form-email').value,
+        phone: document.getElementById('form-phone').value,
+        category: document.getElementById('category-select').value,
+        participants: document.getElementById('form-participants').value
+      };
+
+      fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        messageBox.style.display = "block";
+        messageBox.textContent = "Thanks for registering! Your slot request has been recorded in our database.";
+        this.reset();
+        submitButton.textContent = "COMPLETE REGISTRATION ↗";
+        submitButton.disabled = false;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert("There was an error submitting your registration. Please try again.");
+        submitButton.textContent = "COMPLETE REGISTRATION ↗";
+        submitButton.disabled = false;
+      });
     });
   </script>
 </body>
