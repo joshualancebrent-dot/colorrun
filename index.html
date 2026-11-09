@@ -117,6 +117,18 @@
     .price-row.early { color: var(--purple); font-weight: 800; }
     .price-row.regular { color: #6e6a7c; font-weight: 600; }
     .inclusions-list { margin: 15px 0 25px; padding-left: 20px; color: #5a5669; font-size: .9rem; line-height: 1.7; }
+
+    .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; margin-top: 60px; }
+    .register-panel { background: white; border: 1px solid #eeeaf3; padding: 30px; border-radius: 28px; box-shadow: 0 16px 50px #17152d0b; }
+    form { display: grid; gap: 15px; }
+    label { font-size: .85rem; font-weight: 800; display: grid; gap: 7px; }
+    input, select {
+      width: 100%; padding: 14px 15px; border: 1px solid #dedbe7; border-radius: 12px;
+      font: inherit; color: var(--ink); background: white;
+    }
+    input:focus, select:focus { outline: 3px solid #8864e833; border-color: var(--purple); }
+    .form-note { color: #777386; font-size: .8rem; line-height: 1.5; }
+    #form-message { display: none; padding: 14px; background: #e9fff5; border-radius: 12px; color: #146a4c; font-weight: 700; }
     
     .footer { padding: 30px 0; border-top: 1px solid #eeeaf3; color: #777386; font-size: .85rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -124,7 +136,7 @@
       .nav-links a:not(.button) { display: none; }
       .hero { min-height: 620px; }
       .paint-splash { width: 130px; height: 130px; right: 12%; bottom: 8%; opacity: .65; }
-      .details-grid, .steps, .category-cards { grid-template-columns: 1fr; }
+      .details-grid, .steps, .category-cards, .register-wrap { grid-template-columns: 1fr; }
       .section { padding: 65px 0; }
     }
   </style>
@@ -133,7 +145,7 @@
   <header class="container nav">
     <a class="brand" href="#">COLOR<span>RUN</span></a>
     <nav class="nav-links" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="#details">Event details</a>
+      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="#register">Register now</a>
     </nav>
   </header>
 
@@ -210,7 +222,7 @@
               <li>Finisher Medal</li>
             </ul>
           </div>
-          <a class="button" href="#">Select 3KM</a>
+          <a class="button select-category" href="#register" data-category="3KM">Select 3KM</a>
         </article>
 
         <article class="category-card">
@@ -231,7 +243,7 @@
               <li>Finisher Medal</li>
             </ul>
           </div>
-          <a class="button" href="#">Select 5KM</a>
+          <a class="button select-category" href="#register" data-category="5KM">Select 5KM</a>
         </article>
 
         <article class="category-card">
@@ -252,20 +264,4 @@
               <li>Premium Finisher Medal</li>
             </ul>
           </div>
-          <a class="button" href="#">Select 10KM</a>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span><strong>COLOR RUN</strong> · Run. Splash. Celebrate.</span>
-      <span>© <span id="year"></span> COLOR RUN. All rights reserved.</span>
-    </div>
-  </footer>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+          <a class="
