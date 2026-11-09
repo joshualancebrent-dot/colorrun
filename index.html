@@ -117,18 +117,6 @@
     .price-row.early { color: var(--purple); font-weight: 800; }
     .price-row.regular { color: #6e6a7c; font-weight: 600; }
     .inclusions-list { margin: 15px 0 25px; padding-left: 20px; color: #5a5669; font-size: .9rem; line-height: 1.7; }
-
-    .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; margin-top: 60px; }
-    .register-panel { background: white; border: 1px solid #eeeaf3; padding: 30px; border-radius: 28px; box-shadow: 0 16px 50px #17152d0b; }
-    form { display: grid; gap: 15px; }
-    label { font-size: .85rem; font-weight: 800; display: grid; gap: 7px; }
-    input, select {
-      width: 100%; padding: 14px 15px; border: 1px solid #dedbe7; border-radius: 12px;
-      font: inherit; color: var(--ink); background: white;
-    }
-    input:focus, select:focus { outline: 3px solid #8864e833; border-color: var(--purple); }
-    .form-note { color: #777386; font-size: .8rem; line-height: 1.5; }
-    #form-message { display: none; padding: 14px; background: #e9fff5; border-radius: 12px; color: #146a4c; font-weight: 700; }
     
     .footer { padding: 30px 0; border-top: 1px solid #eeeaf3; color: #777386; font-size: .85rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -136,16 +124,16 @@
       .nav-links a:not(.button) { display: none; }
       .hero { min-height: 620px; }
       .paint-splash { width: 130px; height: 130px; right: 12%; bottom: 8%; opacity: .65; }
-      .details-grid, .steps, .category-cards, .register-wrap { grid-template-columns: 1fr; }
+      .details-grid, .steps, .category-cards { grid-template-columns: 1fr; }
       .section { padding: 65px 0; }
     }
   </style>
 </head>
 <body>
   <header class="container nav">
-    <a class="brand" href="#">COLOR<span>RUN</span></a>
+    <a class="brand" href="index.html">COLOR<span>RUN</span></a>
     <nav class="nav-links" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="#register">Register now</a>
+      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="register.html">Register now</a>
     </nav>
   </header>
 
@@ -222,7 +210,7 @@
               <li>Finisher Medal</li>
             </ul>
           </div>
-          <a class="button select-category" href="#register" data-category="3KM">Select 3KM</a>
+          <a class="button" href="register.html?category=3KM">Register for 3KM ↗</a>
         </article>
 
         <article class="category-card">
@@ -243,7 +231,7 @@
               <li>Finisher Medal</li>
             </ul>
           </div>
-          <a class="button select-category" href="#register" data-category="5KM">Select 5KM</a>
+          <a class="button" href="register.html?category=5KM">Register for 5KM ↗</a>
         </article>
 
         <article class="category-card">
@@ -264,41 +252,8 @@
               <li>Premium Finisher Medal</li>
             </ul>
           </div>
-          <a class="button select-category" href="#register" data-category="5KM">Select 5KM</a>
-          </article>
-      </div>
-
-      <div class="register-wrap" id="register">
-        <div class="section-heading" style="margin-bottom:0;">
-          <span class="kicker">Secure your slot</span>
-          <h2>Ready to join the festival?</h2>
-          <p>Fill out the registration form below to submit your details for the selected race category.</p>
-        </div>
-        <div class="register-panel">
-          <h3 style="margin-top:0;font-size:1.5rem">Participant registration</h3>
-          <form id="registration-form">
-            <label>Full name<input name="name" autocomplete="name" placeholder="Your full name" required></label>
-            <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
-            <label>Contact number<input name="phone" type="tel" autocomplete="tel" placeholder="Your mobile number" required></label>
-            <label>Race category
-              <select name="category" id="category-select" required>
-                <option value="">Select distance category</option>
-                <option value="3KM">3KM Run</option>
-                <option value="5KM">5KM Run</option>
-                <option value="10KM">10KM Run</option>
-              </select>
-            </label>
-            <label>Number of participants
-              <select name="participants" required>
-                <option value="">Select quantity</option>
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option>
-              </select>
-            </label>
-            <button class="button" type="submit">SUBMIT REGISTRATION ↗</button>
-            <p class="form-note">Your information will be securely recorded once connected to an active registration backend.</p>
-            <div id="form-message" role="status">Thanks for registering! Your slot request has been logged locally.</div>
-          </form>
-        </div>
+          <a class="button" href="register.html?category=10KM">Register for 10KM ↗</a>
+        </article>
       </div>
     </section>
   </main>
@@ -311,23 +266,6 @@
   </footer>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    
-    // Automatically select the category in the form dropdown when a category button is clicked
-    document.querySelectorAll(".select-category").forEach(button => {
-      button.addEventListener("click", function() {
-        const selectedCategory = this.getAttribute("data-category");
-        const categoryDropdown = document.getElementById("category-select");
-        if (categoryDropdown && selectedCategory) {
-          categoryDropdown.value = selectedCategory;
-        }
-      });
-    });
-
-    document.getElementById("registration-form").addEventListener("submit", function(event) {
-      event.preventDefault();
-      if (!this.reportValidity()) return;
-      document.getElementById("form-message").style.display = "block";
-    });
   </script>
 </body>
 </html>
