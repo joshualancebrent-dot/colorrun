@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="COLOR RUN: Run for fun, get covered in color, and celebrate every step.">
+  <title>COLOR RUN | Run. Splash. Celebrate.</title>
+  <style>
+    :root {
+      --ink: #17152d;
+      --paper: #fffdf8;
+      --pink: #ff4f91;
+      --orange: #ff9d35;
+      --yellow: #ffdc55;
+      --blue: #4b8cff;
+      --green: #4bc99a;
+      --purple: #8864e8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0; gap: 20px;
+    }
+    .brand { font-size: 1.15rem; font-weight: 950; letter-spacing: -.06em; }
+    .brand span { color: var(--pink); }
+    .nav-links { display: flex; align-items: center; gap: 26px; font-size: .9rem; font-weight: 700; }
+    .nav-links a:hover { color: var(--pink); }
+    .button {
+      display: inline-flex; justify-content: center; align-items: center;
+      padding: 14px 22px; border-radius: 999px; background: var(--ink);
+      color: white; font-weight: 800; border: 0; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .button:hover { transform: translateY(-3px); box-shadow: 0 10px 22px #17152d22; }
+    .button-light { background: white; color: var(--ink); }
+    .hero {
+      position: relative; overflow: hidden; border-radius: 34px;
+      min-height: 590px; display: grid; align-items: center;
+      background: linear-gradient(125deg, #ffdc55 0%, #ff9d35 38%, #ff4f91 72%, #8864e8 100%);
+      padding: clamp(32px, 7vw, 86px); isolation: isolate;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; z-index: -1; border-radius: 50%;
+      filter: blur(1px); opacity: .8;
+    }
+    .hero::before { width: 390px; height: 390px; right: -75px; top: -105px; background: #4b8cff; }
+    .hero::after { width: 280px; height: 280px; right: 18%; bottom: -180px; background: #4bc99a; }
+    .hero-copy { max-width: 650px; }
+    .eyebrow {
+      display: inline-block; background: #ffffffd9; border-radius: 99px;
+      padding: 8px 13px; font-size: .75rem; font-weight: 900; letter-spacing: .12em;
+    }
+    h1 { font-size: clamp(4rem, 10vw, 8.5rem); line-height: .83; letter-spacing: -.09em; margin: 25px 0; }
+    h1 span { color: white; text-shadow: 0 5px 0 #17152d14; }
+    .hero p { max-width: 480px; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .paint-splash {
+      position: absolute; right: 7%; bottom: 13%; width: 210px; height: 210px;
+      border-radius: 46% 54% 62% 38% / 44% 40% 60% 56%;
+      background: var(--green); transform: rotate(-18deg);
+      box-shadow: 30px -20px 0 -8px var(--yellow), -25px 28px 0 -10px var(--blue), 18px 38px 0 -15px var(--purple);
+      opacity: .95; z-index: -1;
+    }
+    .section { padding: 88px 0; }
+    .section-heading { max-width: 650px; margin-bottom: 34px; }
+    .kicker { color: #8b56d9; font-size: .75rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { font-size: clamp(2.3rem, 5vw, 4rem); letter-spacing: -.065em; line-height: .98; margin: 12px 0; }
+    .section-heading p { color: #656276; line-height: 1.7; }
+    .details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .detail-card { padding: 26px; border-radius: 24px; background: white; border: 1px solid #eeeaf3; }
+    .detail-card .icon { font-size: 2rem; }
+    .detail-card h3 { margin: 15px 0 7px; font-size: 1.1rem; }
+    .detail-card p { color: #6e6a7c; margin: 0; line-height: 1.6; font-size: .95rem; }
+    .how { background: #f4f1ff; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step { background: white; border-radius: 24px; padding: 26px; }
+    .step-number { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; color: white; font-weight: 900; background: var(--pink); }
+    .step:nth-child(2) .step-number { background: var(--blue); }
+    .step:nth-child(3) .step-number { background: var(--green); color: var(--ink); }
+    .step p { color: #6e6a7c; line-height: 1.6; }
+    .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
+    .register-panel { background: white; border: 1px solid #eeeaf3; padding: 30px; border-radius: 28px; box-shadow: 0 16px 50px #17152d0b; }
+    form { display: grid; gap: 15px; }
+    label { font-size: .85rem; font-weight: 800; display: grid; gap: 7px; }
+    input, select {
+      width: 100%; padding: 14px 15px; border: 1px solid #dedbe7; border-radius: 12px;
+      font: inherit; color: var(--ink); background: white;
+    }
+    input:focus, select:focus { outline: 3px solid #8864e833; border-color: var(--purple); }
+    .form-note { color: #777386; font-size: .8rem; line-height: 1.5; }
+    #form-message { display: none; padding: 14px; background: #e9fff5; border-radius: 12px; color: #146a4c; font-weight: 700; }
+    .footer { padding: 30px 0; border-top: 1px solid #eeeaf3; color: #777386; font-size: .85rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .nav-links a:not(.button) { display: none; }
+      .hero { min-height: 620px; }
+      .paint-splash { width: 130px; height: 130px; right: 12%; bottom: 8%; opacity: .65; }
+      .details-grid, .steps, .register-wrap { grid-template-columns: 1fr; }
+      .section { padding: 65px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="container nav">
+    <a class="brand" href="#">COLOR<span>RUN</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="#register">Register now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div class="hero-copy">
+        <span class="eyebrow">A DAY OF COLOR, ENERGY & GOOD VIBES</span>
+        <h1>RUN.<br><span>SPLASH.</span><br>REPEAT.</h1>
+        <p>Leave the ordinary behind. Move, laugh, and celebrate with every colorful step at COLOR RUN!</p>
+        <div class="hero-actions">
+          <a class="button" href="#register">JOIN THE RUN <span aria-hidden="true">&nbsp;↗</span></a>
+          <a class="button button-light" href="#about">Discover the event</a>
+        </div>
+      </div>
+      <div class="paint-splash" aria-hidden="true"></div>
+    </section>
+
+    <section class="container section" id="about">
+      <div class="section-heading">
+        <span class="kicker">Save the date</span>
+        <h2>More than a run.<br>A colorful memory.</h2>
+        <p>COLOR RUN brings people together for a lively event where everyone can take part at their own pace. Come with friends, family, classmates, or your whole team.</p>
+      </div>
+      <div class="details-grid">
+        <article class="detail-card"><div class="icon">📅</div><h3>Event date</h3><p>To be announced<br><strong>Add your event date here</strong></p></article>
+        <article class="detail-card"><div class="icon">📍</div><h3>Event venue</h3><p>To be announced<br><strong>Add your venue here</strong></p></article>
+        <article class="detail-card"><div class="icon">🏃</div><h3>Who can join?</h3><p>Friends, families, students, and anyone ready to have a colorful day.</p></article>
+      </div>
+    </section>
+
+    <section class="how section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">The experience</span>
+          <h2>Your day. Your pace.<br>All the color.</h2>
+          <p>Get ready for an event full of movement, smiles, and unforgettable moments.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><div class="step-number">01</div><h3>Sign up</h3><p>Complete the registration form and get ready for event day.</p></article>
+          <article class="step"><div class="step-number">02</div><h3>Show up</h3><p>Wear comfortable clothes, bring your energy, and meet the crowd.</p></article>
+          <article class="step"><div class="step-number">03</div><h3>Celebrate</h3><p>Enjoy the run, celebrate with friends, and make colorful memories.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="register">
+      <div class="register-wrap">
+        <div class="section-heading">
+          <span class="kicker">Be part of it</span>
+          <h2>Ready to add some color to your day?</h2>
+          <p>Register your interest below. The form is currently a front-end sample and does not yet send or store registrations. Connect it to your chosen registration service before publishing.</p>
+        </div>
+        <div class="register-panel">
+          <h3 style="margin-top:0;font-size:1.5rem">Participant registration</h3>
+          <form id="registration-form">
+            <label>Full name<input name="name" autocomplete="name" placeholder="Your full name" required></label>
+            <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+            <label>Contact number<input name="phone" type="tel" autocomplete="tel" placeholder="Your mobile number" required></label>
+            <label>Number of participants
+              <select name="participants" required><option value="">Select quantity</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
+            </label>
+            <button class="button" type="submit">SUBMIT INTEREST ↗</button>
+            <p class="form-note">Your information will only be collected once an actual registration service is connected.</p>
+            <div id="form-message" role="status">Thanks! This demo form is working locally. Connect a registration service to receive submissions.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span><strong>COLOR RUN</strong> · Run. Splash. Celebrate.</span>
+      <span>© <span id="year"></span> COLOR RUN. All rights reserved.</span>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("registration-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      if (!this.reportValidity()) return;
+      document.getElementById("form-message").style.display = "block";
+    });
+  </script>
+</body>
+</html>
