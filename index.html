@@ -85,24 +85,46 @@
     .step:nth-child(2) .step-number { background: var(--blue); }
     .step:nth-child(3) .step-number { background: var(--green); color: var(--ink); }
     .step p { color: #6e6a7c; line-height: 1.6; }
-    .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
-    .register-panel { background: white; border: 1px solid #eeeaf3; padding: 30px; border-radius: 28px; box-shadow: 0 16px 50px #17152d0b; }
-    form { display: grid; gap: 15px; }
-    label { font-size: .85rem; font-weight: 800; display: grid; gap: 7px; }
-    input, select {
-      width: 100%; padding: 14px 15px; border: 1px solid #dedbe7; border-radius: 12px;
-      font: inherit; color: var(--ink); background: white;
+    
+    .event-info-panel {
+      background: white; border: 1px solid #eeeaf3; border-radius: 28px;
+      padding: 36px; box-shadow: 0 16px 50px #17152d0b; margin-bottom: 50px;
     }
-    input:focus, select:focus { outline: 3px solid #8864e833; border-color: var(--purple); }
-    .form-note { color: #777386; font-size: .8rem; line-height: 1.5; }
-    #form-message { display: none; padding: 14px; background: #e9fff5; border-radius: 12px; color: #146a4c; font-weight: 700; }
+    .event-info-panel h3 { margin-top: 0; font-size: 1.75rem; letter-spacing: -.03em; }
+    .event-info-panel p { color: #6e6a7c; line-height: 1.65; }
+
+    .category-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
+    .category-card {
+      background: white; border-radius: 28px; border: 1px solid #eeeaf3;
+      padding: 30px; display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: 0 10px 30px #17152d06; transition: transform .2s, box-shadow .2s;
+    }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px #17152d0d; }
+    .category-badge {
+      display: inline-block; padding: 6px 14px; border-radius: 99px;
+      font-weight: 900; font-size: .85rem; width: fit-content; margin-bottom: 12px;
+    }
+    .badge-3k { background: #ffe6f0; color: var(--pink); }
+    .badge-5k { background: #eaf2ff; color: var(--blue); }
+    .badge-10k { background: #e8f9f2; color: #1f9468; }
+    
+    .category-card h3 { font-size: 2rem; margin: 0 0 10px; letter-spacing: -.04em; }
+    .pricing-box {
+      margin: 18px 0; padding: 16px; background: #faf9fd; border-radius: 16px;
+      display: grid; gap: 8px;
+    }
+    .price-row { display: flex; justify-content: space-between; align-items: center; font-size: .95rem; }
+    .price-row.early { color: var(--purple); font-weight: 800; }
+    .price-row.regular { color: #6e6a7c; font-weight: 600; }
+    .inclusions-list { margin: 15px 0 25px; padding-left: 20px; color: #5a5669; font-size: .9rem; line-height: 1.7; }
+    
     .footer { padding: 30px 0; border-top: 1px solid #eeeaf3; color: #777386; font-size: .85rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     @media (max-width: 760px) {
       .nav-links a:not(.button) { display: none; }
       .hero { min-height: 620px; }
       .paint-splash { width: 130px; height: 130px; right: 12%; bottom: 8%; opacity: .65; }
-      .details-grid, .steps, .register-wrap { grid-template-columns: 1fr; }
+      .details-grid, .steps, .category-cards { grid-template-columns: 1fr; }
       .section { padding: 65px 0; }
     }
   </style>
@@ -111,7 +133,7 @@
   <header class="container nav">
     <a class="brand" href="#">COLOR<span>RUN</span></a>
     <nav class="nav-links" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="#register">Register now</a>
+      <a href="#about">About</a><a href="#experience">The experience</a><a class="button" href="#details">Event details</a>
     </nav>
   </header>
 
@@ -122,7 +144,7 @@
         <h1>RUN.<br><span>SPLASH.</span><br>REPEAT.</h1>
         <p>Leave the ordinary behind. Move, laugh, and celebrate with every colorful step at COLOR RUN!</p>
         <div class="hero-actions">
-          <a class="button" href="#register">JOIN THE RUN <span aria-hidden="true">&nbsp;↗</span></a>
+          <a class="button" href="#categories">VIEW CATEGORIES <span aria-hidden="true">&nbsp;↗</span></a>
           <a class="button button-light" href="#about">Discover the event</a>
         </div>
       </div>
@@ -150,34 +172,88 @@
           <p>Get ready for an event full of movement, smiles, and unforgettable moments.</p>
         </div>
         <div class="steps">
-          <article class="step"><div class="step-number">01</div><h3>Sign up</h3><p>Complete the registration form and get ready for event day.</p></article>
+          <article class="step"><div class="step-number">01</div><h3>Sign up</h3><p>Choose your distance category and complete your race entry.</p></article>
           <article class="step"><div class="step-number">02</div><h3>Show up</h3><p>Wear comfortable clothes, bring your energy, and meet the crowd.</p></article>
           <article class="step"><div class="step-number">03</div><h3>Celebrate</h3><p>Enjoy the run, celebrate with friends, and make colorful memories.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="container section" id="register">
-      <div class="register-wrap">
-        <div class="section-heading">
-          <span class="kicker">Be part of it</span>
-          <h2>Ready to add some color to your day?</h2>
-          <p>Register your interest below. The form is currently a front-end sample and does not yet send or store registrations. Connect it to your chosen registration service before publishing.</p>
-        </div>
-        <div class="register-panel">
-          <h3 style="margin-top:0;font-size:1.5rem">Participant registration</h3>
-          <form id="registration-form">
-            <label>Full name<input name="name" autocomplete="name" placeholder="Your full name" required></label>
-            <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
-            <label>Contact number<input name="phone" type="tel" autocomplete="tel" placeholder="Your mobile number" required></label>
-            <label>Number of participants
-              <select name="participants" required><option value="">Select quantity</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
-            </label>
-            <button class="button" type="submit">SUBMIT INTEREST ↗</button>
-            <p class="form-note">Your information will only be collected once an actual registration service is connected.</p>
-            <div id="form-message" role="status">Thanks! This demo form is working locally. Connect a registration service to receive submissions.</div>
-          </form>
-        </div>
+    <section class="container section" id="details">
+      <div class="event-info-panel">
+        <span class="kicker">Official details</span>
+        <h3>COLOR RUN: THE ULTIMATE FESTIVAL</h3>
+        <p>Experience the brightest 5-kilometer un-timed fun run in the world! Color runners are doused from head to toe in different colored powder at each kilometer. The fun continues at the finish line with a gigantic Color Festival featuring music, dancing, and massive color throws.</p>
+      </div>
+
+      <div class="section-heading" id="categories">
+        <span class="kicker">Race options</span>
+        <h2>Choose your distance</h2>
+        <p>Select the category that suits your pace. Every registration includes a complete color run kit.</p>
+      </div>
+
+      <div class="category-cards">
+        <article class="category-card">
+          <div>
+            <span class="category-badge badge-3k">FUN RUN</span>
+            <h3>3KM Run</h3>
+            <p style="color:#6e6a7c; font-size:.95rem;">Perfect for beginners, families, and casual strollers looking for pure fun.</p>
+            <div class="pricing-box">
+              <div class="price-row early"><span>Early Bird:</span> <span>$25</span></div>
+              <div class="price-row regular"><span>Regular:</span> <span>$35</span></div>
+            </div>
+            <strong style="font-size:.85rem; letter-spacing:.05em; text-transform:uppercase; color:#8b56d9;">Inclusions:</strong>
+            <ul class="inclusions-list">
+              <li>Official Event T-Shirt</li>
+              <li>Color Packet (1x)</li>
+              <li>Race Bib</li>
+              <li>Finisher Medal</li>
+            </ul>
+          </div>
+          <a class="button" href="#">Select 3KM</a>
+        </article>
+
+        <article class="category-card">
+          <div>
+            <span class="category-badge badge-5k">MOST POPULAR</span>
+            <h3>5KM Run</h3>
+            <p style="color:#6e6a7c; font-size:.95rem;">The classic Color Run experience with all color stations along the route.</p>
+            <div class="pricing-box">
+              <div class="price-row early"><span>Early Bird:</span> <span>$35</span></div>
+              <div class="price-row regular"><span>Regular:</span> <span>$45</span></div>
+            </div>
+            <strong style="font-size:.85rem; letter-spacing:.05em; text-transform:uppercase; color:#8b56d9;">Inclusions:</strong>
+            <ul class="inclusions-list">
+              <li>Official Event T-Shirt</li>
+              <li>Color Packets (2x)</li>
+              <li>Race Bib</li>
+              <li>Sunglasses</li>
+              <li>Finisher Medal</li>
+            </ul>
+          </div>
+          <a class="button" href="#">Select 5KM</a>
+        </article>
+
+        <article class="category-card">
+          <div>
+            <span class="category-badge badge-10k">CHALLENGE</span>
+            <h3>10KM Run</h3>
+            <p style="color:#6e6a7c; font-size:.95rem;">Double the distance and double the color for seasoned runners.</p>
+            <div class="pricing-box">
+              <div class="price-row early"><span>Early Bird:</span> <span>$45</span></div>
+              <div class="price-row regular"><span>Regular:</span> <span>$55</span></div>
+            </div>
+            <strong style="font-size:.85rem; letter-spacing:.05em; text-transform:uppercase; color:#8b56d9;">Inclusions:</strong>
+            <ul class="inclusions-list">
+              <li>Official Event T-Shirt</li>
+              <li>Color Packets (3x)</li>
+              <li>Race Bib & Timing Chip</li>
+              <li>Sunglasses & Headband</li>
+              <li>Premium Finisher Medal</li>
+            </ul>
+          </div>
+          <a class="button" href="#">Select 10KM</a>
+        </article>
       </div>
     </section>
   </main>
@@ -190,11 +266,6 @@
   </footer>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("registration-form").addEventListener("submit", function(event) {
-      event.preventDefault();
-      if (!this.reportValidity()) return;
-      document.getElementById("form-message").style.display = "block";
-    });
   </script>
 </body>
 </html>
