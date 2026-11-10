@@ -1,6 +1,6 @@
 // COLOR RUN - Google Apps Script Integration & Form Handler
 
-const WEB_APP_URL = 'YOUR_GOOGLE_WEB_APP_URL_HERE';
+const DRIVE_FOLDER_ID = '1-xJOqbMc_C4mQTP1c1_E25aI-gG6LIO4';
 let registrationData = {};
 
 // Auto-select category from URL query parameter if passed from homepage
