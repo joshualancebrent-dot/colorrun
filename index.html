@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COLOR RUN | Restore. Run. Rebuild. Renew.</title>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -30,12 +29,10 @@
 
     a { text-decoration: none; color: inherit; }
 
-    /* Typography Classes */
     .font-display { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }
     .font-heading { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
     .font-mono { font-family: 'Space Mono', monospace; }
 
-    /* Floating Navigation */
     header.nav {
       position: fixed;
       top: 0;
@@ -55,11 +52,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    .brand {
-      font-size: 1.35rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-    }
+    .brand { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.03em; }
     .brand span { color: var(--hot-pink); }
     
     .nav-cta {
@@ -73,19 +66,14 @@
       text-transform: uppercase;
       transition: all 0.2s ease;
     }
-    .nav-cta:hover {
-      background: var(--hot-pink);
-      transform: translateY(-1px);
-    }
+    .nav-cta:hover { background: var(--hot-pink); transform: translateY(-1px); }
 
-    /* Section 1: Hero */
     .hero {
       padding: 160px 0 80px;
-      min-height: 90vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      position: relative;
     }
     .hero-container {
       width: min(1200px, calc(100% - 48px));
@@ -109,11 +97,6 @@
       line-height: 1.5;
       margin-bottom: 36px;
     }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
     .btn-primary {
       background: var(--hot-pink);
       color: white;
@@ -124,12 +107,11 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       box-shadow: 0 10px 30px rgba(255, 54, 94, 0.3);
+      display: inline-block;
       transition: transform 0.2s ease, background 0.2s ease;
     }
-    .btn-primary:hover {
-      background: #e0284d;
-      transform: translateY(-2px);
-    }
+    .btn-primary:hover { background: #e0284d; transform: translateY(-2px); }
+    
     .hero-image-wrap {
       position: relative;
       border-radius: 32px;
@@ -137,19 +119,9 @@
       box-shadow: 0 25px 60px rgba(17, 19, 24, 0.15);
       aspect-ratio: 4/5;
     }
-    .hero-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Event Info Strip */
-    .info-strip {
-      background: var(--charcoal);
-      color: var(--off-white);
-      padding: 24px 0;
-      margin-top: 60px;
-    }
+    .info-strip { background: var(--charcoal); color: var(--off-white); padding: 24px 0; }
     .info-strip-grid {
       width: min(1200px, calc(100% - 48px));
       margin: 0 auto;
@@ -158,218 +130,87 @@
       gap: 20px;
       text-align: center;
     }
-    .info-item .label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--yellow);
-      margin-bottom: 4px;
-    }
-    .info-item .value {
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
+    .info-item .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--yellow); margin-bottom: 4px; }
+    .info-item .value { font-size: 1.25rem; font-weight: 700; }
 
-    /* Section 2: About the Event */
-    .section {
-      padding: 120px 0;
-    }
-    .container {
-      width: min(1200px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-    .section-header {
-      margin-bottom: 60px;
-    }
-    .section-tag {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--teal);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .section-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .about-text p {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #44464F;
-      margin-bottom: 24px;
-    }
+    .section { padding: 120px 0; }
+    .container { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+    .section-header { margin-bottom: 60px; }
+    .section-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--teal); margin-bottom: 12px; display: block; }
+    .section-title { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.02em; }
 
-    /* Section 3: The Experience */
-    .experience-grid {
+    /* Category Cards Grid */
+    .categories-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
-    .experience-card {
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      background: #ddd;
-      min-height: 400px;
+    .category-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 28px;
+      padding: 40px 32px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .experience-card.tall {
-      grid-row: span 2;
-      min-height: 550px;
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(17,19,24,0.06);
     }
-    .experience-card img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
+    .category-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 20px;
     }
-    .experience-card:hover img {
-      transform: scale(1.03);
-    }
-    .experience-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(17,19,24,0.85) 100%);
-    }
-    .experience-content {
-      position: relative;
-      z-index: 2;
-      color: white;
-    }
-    .experience-content h3 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-
-    /* Section 4: Race Information */
-    .race-banner {
+    .badge-3k { background: rgba(25, 183, 165, 0.1); color: var(--teal); }
+    .badge-5k { background: rgba(255, 54, 94, 0.1); color: var(--hot-pink); }
+    .badge-10k { background: rgba(255, 202, 40, 0.2); color: #b38600; }
+    .category-card h3 { font-size: 2.25rem; margin-bottom: 12px; }
+    .category-card p { color: #55575F; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; }
+    .btn-card {
       background: var(--charcoal);
-      color: var(--off-white);
-      border-radius: 32px;
-      padding: 80px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: background 0.2s ease;
     }
-    .race-banner::before {
-      content: '5KM';
-      position: absolute;
-      right: -20px;
-      bottom: -60px;
-      font-family: 'Anton', sans-serif;
-      font-size: 18rem;
-      color: rgba(255, 255, 255, 0.03);
-      line-height: 1;
-      pointer-events: none;
-    }
+    .btn-card:hover { background: var(--hot-pink); }
 
-    /* Section 5: What You Get */
-    .inclusions-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
+    .inclusions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     .inclusion-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 24px;
       padding: 32px 24px;
       text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .inclusion-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(17,19,24,0.06);
     }
     .inclusion-icon {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       background: rgba(25, 183, 165, 0.1);
       color: var(--teal);
       border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin: 0 auto 20px;
-    }
-    .inclusion-card h4 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-    .inclusion-card p {
-      color: #666;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin: 0 auto 20px;
     }
 
-    /* Section 6: Event Details & Venue */
-    .details-box {
-      background: white;
-      border: 1px solid var(--border-color);
-      border-radius: 32px;
-      padding: 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-    }
-    .details-list {
-      list-style: none;
-      display: grid;
-      gap: 24px;
-    }
-    .details-list li {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 16px;
-    }
-    .details-list .label {
-      color: #777;
-      font-weight: 500;
-    }
-    .details-list .val {
-      font-weight: 700;
-      color: var(--charcoal);
-    }
-
-    /* Section 7: Final CTA */
     .cta-section {
       background: var(--hot-pink);
       color: white;
       border-radius: 32px;
       padding: 100px 40px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
       margin-bottom: 80px;
-    }
-    .cta-section h2 {
-      font-size: clamp(3rem, 6vw, 5rem);
-      margin-bottom: 16px;
-    }
-    .cta-section p {
-      font-size: 1.25rem;
-      opacity: 0.9;
-      margin-bottom: 40px;
     }
     .btn-light {
       background: white;
@@ -378,44 +219,23 @@
       border-radius: 999px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: transform 0.2s ease;
       display: inline-block;
+      transition: transform 0.2s ease;
     }
-    .btn-light:hover {
-      transform: translateY(-2px);
-      background: var(--off-white);
-    }
+    .btn-light:hover { transform: translateY(-2px); background: var(--off-white); }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 40px 0;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-    }
+    footer { border-top: 1px solid var(--border-color); padding: 40px 0; text-align: center; color: #777; font-size: 0.9rem; }
 
-    /* Responsive */
     @media (max-width: 968px) {
-      .hero-container, .about-grid, .experience-grid, .race-banner, .details-box {
-        grid-template-columns: 1fr;
-      }
-      .inclusions-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .hero-container { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .inclusions-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-image-wrap { display: none; }
-    }
-    @media (max-width: 580px) {
-      .inclusions-grid, .info-strip-grid {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Navigation -->
   <header class="nav">
     <div class="nav-container">
       <a href="index.html" class="brand font-display">COLOR<span>RUN</span></a>
@@ -435,11 +255,9 @@
           <span class="highlight">Renew.</span>
         </h1>
         <p class="hero-subtitle">
-          More than a run. A celebration of movement, community, and renewal on the historic grounds of AUP.
+          More than a run. A celebration of movement, community, and renewal across 3KM, 5KM, and 10KM routes.
         </p>
-        <div class="hero-actions">
-          <a href="registration.html" class="btn-primary font-heading">Register for 5KM</a>
-        </div>
+        <a href="registration.html" class="btn-primary font-heading">Register Now ↗</a>
       </div>
       <div class="hero-image-wrap">
         <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&q=80&w=1000" alt="Color run participants celebrating">
@@ -451,8 +269,8 @@
   <div class="info-strip">
     <div class="info-strip-grid font-mono">
       <div class="info-item">
-        <div class="label">Distance</div>
-        <div class="value">5KM Course</div>
+        <div class="label">Categories</div>
+        <div class="value">3KM / 5KM / 10KM</div>
       </div>
       <div class="info-item">
         <div class="label">Location</div>
@@ -465,81 +283,45 @@
     </div>
   </div>
 
-  <!-- SECTION 2: ABOUT THE EVENT -->
+  <!-- SECTION: RACE CATEGORIES -->
   <section class="section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text">
-          <span class="section-tag font-mono">About The Experience</span>
-          <h2 class="section-title font-heading">More than a run.</h2>
-          <p style="margin-top: 24px;">
-            Color Run is designed to bring students, families, fitness enthusiasts, and the entire community together for an unforgettable day of vibrance and unity.
-          </p>
-          <p>
-            Whether you are sprinting for a personal best or walking alongside friends and loved ones, every step on our 5KM course represents health, joy, and communal renewal. No prior running experience required—everyone is welcome!
-          </p>
-        </div>
-        <div style="border-radius: 24px; overflow: hidden; height: 420px;">
-          <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=1000" alt="Runners smiling" style="width:100%; height:100%; object-fit: cover;">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: THE EXPERIENCE -->
-  <section class="section" style="background: #F0EEE6;">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag font-mono">Visual Gallery</span>
-        <h2 class="section-title font-heading">Run. Splash. Celebrate.</h2>
+        <span class="section-tag font-mono">Choose Your Distance</span>
+        <h2 class="section-title font-heading">Race Categories</h2>
       </div>
-      <div class="experience-grid">
-        <div class="experience-card tall">
-          <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=1200" alt="Color powder explosion">
-          <div class="experience-content">
-            <h3 class="font-heading">Vibrant Color Stations</h3>
-            <p style="opacity: 0.85;">Immerse yourself in clouds of bright, organic color powder at every kilometer milestone.</p>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div>
+            <span class="category-badge badge-3k font-mono">3KM Category</span>
+            <h3 class="font-display">3KM Run</h3>
+            <p>Perfect for beginners, families, and casual runners looking for an energetic, colorful experience.</p>
           </div>
+          <a href="registration.html?category=3KM" class="btn-card font-heading">Register 3KM ↗</a>
         </div>
-        <div class="experience-card">
-          <img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&q=80&w=800" alt="Community energy">
-          <div class="experience-content">
-            <h3 class="font-heading">Community Spirit</h3>
-            <p style="opacity: 0.85;">Shared energy and joyful strides.</p>
+
+        <div class="category-card" style="border-color: var(--hot-pink);">
+          <div>
+            <span class="category-badge badge-5k font-mono">Most Popular</span>
+            <h3 class="font-display">5KM Run</h3>
+            <p>Our flagship distance for runners seeking a balanced challenge through vibrant color stations.</p>
           </div>
+          <a href="registration.html?category=5KM" class="btn-card font-heading" style="background: var(--hot-pink);">Register 5KM ↗</a>
         </div>
-        <div class="experience-card">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800" alt="Finish line celebration">
-          <div class="experience-content">
-            <h3 class="font-heading">Epic Finish Festival</h3>
-            <p style="opacity: 0.85;">Music, music drops, and massive color throws.</p>
+
+        <div class="category-card">
+          <div>
+            <span class="category-badge badge-10k font-mono">10KM Category</span>
+            <h3 class="font-display">10KM Run</h3>
+            <p>Designed for experienced runners looking to push their endurance across the full campus route.</p>
           </div>
+          <a href="registration.html?category=10KM" class="btn-card font-heading">Register 10KM ↗</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 4: RACE INFORMATION -->
-  <section class="section">
-    <div class="container">
-      <div class="race-banner">
-        <div>
-          <span class="section-tag font-mono" style="color: var(--yellow);">Official Distance</span>
-          <h2 class="font-display" style="font-size: 3.5rem; line-height: 1; margin-bottom: 20px;">One Distance.<br>One Experience.</h2>
-          <p style="font-size: 1.1rem; opacity: 0.85; line-height: 1.6; max-width: 480px;">
-            We focus entirely on the ultimate 5KM festival route across the scenic campus of Adventist University of the Philippines. Perfect for all fitness levels.
-          </p>
-        </div>
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px; text-align: center;">
-          <div class="font-mono" style="font-size: 0.85rem; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Route Length</div>
-          <div class="font-display" style="font-size: 5rem; color: white; line-height: 1;">5 Kilometers</div>
-          <p style="font-size: 0.95rem; opacity: 0.7; margin-top: 12px;">Fully marshaled course with hydration and color stations.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 5: WHAT YOU GET -->
+  <!-- SECTION: WHAT YOU GET -->
   <section class="section" style="background: #FFF;">
     <div class="container">
       <div class="section-header" style="text-align: center; max-width: 600px; margin: 0 auto 60px;">
@@ -550,33 +332,41 @@
         <div class="inclusion-card">
           <div class="inclusion-icon">👕</div>
           <h4 class="font-heading">Event Shirt</h4>
-          <p>Official high-grade performance tee designed for the color run.</p>
+          <p>Official performance tee designed for the color run.</p>
         </div>
         <div class="inclusion-card">
           <div class="inclusion-icon">🏷️</div>
           <h4 class="font-heading">Race Bib</h4>
-          <p>Unique numbered bib with secure timing and verification tracking.</p>
+          <p>Unique bib number with verification tracking.</p>
         </div>
         <div class="inclusion-card">
           <div class="inclusion-icon">✨</div>
           <h4 class="font-heading">Color Powder</h4>
-          <p>Safe, vibrant color packets for the massive finish line celebration.</p>
+          <p>Vibrant color packets for the finish celebration.</p>
         </div>
         <div class="inclusion-card">
           <div class="inclusion-icon">🏅</div>
           <h4 class="font-heading">Finisher Medal</h4>
-          <p>Custom commemorative medal awarded upon crossing the finish line.</p>
+          <p>Custom medal awarded upon crossing the finish line.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 6: EVENT DETAILS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag font-mono">Logistics</span>
-        <h2 class="section-title font-heading">See You At AUP.</h2>
-      </div>
-      <div class="details-box">
-        <div>
+  <!-- SECTION: FINAL CTA -->
+  <section class="container">
+    <div class="cta-section">
+      <h2 class="font-display" style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 16px;">Ready To Get Colorful?</h2>
+      <p class="font-mono" style="font-size: 1.25rem; margin-bottom: 40px;">Your next unforgettable run starts here.</p>
+      <a href="registration.html" class="btn-light font-heading">Register Now ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container font-mono">
+      <p>&copy; 2026 COLOR RUN. Restore. Run. Rebuild. Renew. Adventist University of the Philippines.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
