@@ -62,7 +62,7 @@ function handlePaymentSubmit(e) {
     registrationData.fileName = file.name;
     registrationData.mimeType = file.type;
 
-    fetch(WEB_APP_URL, {
+    fetch(https://script.google.com/macros/s/AKfycbxnq3PArzNBtdDcu65NWJFjHC6tjX9kzibX0_mq024LTNCAk9CA854bQjgcDVk4SsTU/exec, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
