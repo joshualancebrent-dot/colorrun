@@ -65,7 +65,7 @@
               </select>
             </label>
             
-            <button class="button" type="submit">PROCEED TO PAYMENT ↗</button>
+           <button class="button" type="button" id="proceed-btn">PROCEED TO PAYMENT ↗</button>
           </form>
         </div>
 
@@ -90,70 +90,80 @@
     </div>
   </main>
 
-  <script>
-    const WEB_APP_URL = 'YOUR_GOOGLE_WEB_APP_URL_HERE';
-    let registrationData = {};
+ <script>
+  const WEB_APP_URL = 'YOUR_GOOGLE_WEB_APP_URL_HERE';
+  let registrationData = {};
 
-    // Auto-select category from URL query string
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('category')) {
-      document.getElementById('category-select').value = urlParams.get('category');
+  // Auto-select category from URL query string
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('category')) {
+    document.getElementById('category-select').value = urlParams.get('category');
+  }
+
+  // Step 1 Proceed Button Click Handler
+  document.getElementById("proceed-btn").addEventListener("click", function() {
+    const name = document.getElementById('form-name').value;
+    const email = document.getElementById('form-email').value;
+    const phone = document.getElementById('form-phone').value;
+    const category = document.getElementById('category-select').value;
+
+    // Simple validation check before proceeding
+    if (!name || !email || !phone || !category) {
+      alert("Please fill out all required fields before proceeding to payment.");
+      return;
     }
 
-    // Step 1 Submission
-    document.getElementById("info-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      registrationData = {
-        name: document.getElementById('form-name').value,
-        email: document.getElementById('form-email').value,
-        phone: document.getElementById('form-phone').value,
-        category: document.getElementById('category-select').value,
-        participants: document.getElementById('form-participants').value
-      };
+    registrationData = {
+      name: name,
+      email: email,
+      phone: phone,
+      category: category
+    };
 
-      document.getElementById('step-1').classList.remove('active');
-      document.getElementById('step-2').classList.add('active');
-    });
+    // Switch panels
+    document.getElementById('step-1').classList.remove('active');
+    document.getElementById('step-2').classList.add('active');
+  });
 
-    // Step 2 Submission (Receipt File Conversion & Apps Script Fetch)
-    document.getElementById("payment-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const fileInput = document.getElementById('receipt-file');
-      const file = fileInput.files[0];
-      const submitBtn = document.getElementById('submit-btn');
-      const statusMsg = document.getElementById('status-message');
+  // Step 2 Submission (Receipt File Conversion & Apps Script Fetch)
+  document.getElementById("payment-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('receipt-file');
+    const file = fileInput.files[0];
+    const submitBtn = document.getElementById('submit-btn');
+    const statusMsg = document.getElementById('status-message');
 
-      if (!file) return alert("Please select a receipt image.");
+    if (!file) return alert("Please select a receipt image.");
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = "UPLOADING & SUBMITTING...";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "UPLOADING & SUBMITTING...";
 
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        registrationData.fileData = evt.target.result;
-        registrationData.fileName = file.name;
-        registrationData.mimeType = file.type;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      registrationData.fileData = evt.target.result;
+      registrationData.fileName = file.name;
+      registrationData.mimeType = file.type;
 
-        fetch(WEB_APP_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(registrationData)
-        })
-        .then(() => {
-          submitBtn.style.display = "none";
-          statusMsg.style.display = "block";
-          statusMsg.innerHTML = "Registration submitted successfully!<br><br>We are verifying your GCash payment. Once confirmed, your official Race Bib Number will be sent to <strong>" + registrationData.email + "</strong>.";
-        })
-        .catch(err => {
-          console.error(err);
-          alert("Error submitting registration. Please try again.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = "SUBMIT RECEIPT FOR VERIFICATION ↗";
-        });
-      };
-      reader.readAsDataURL(file);
-    });
-  </script>
+      fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(registrationData)
+      })
+      .then(() => {
+        submitBtn.style.display = "none";
+        statusMsg.style.display = "block";
+        statusMsg.innerHTML = "Registration submitted successfully!<br><br>We are verifying your GCash payment. Once confirmed, your official Race Bib Number will be sent to <strong>" + registrationData.email + "</strong>.";
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error submitting registration. Please try again.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "SUBMIT RECEIPT FOR VERIFICATION ↗";
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
 </body>
 </html>
