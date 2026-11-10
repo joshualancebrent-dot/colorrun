@@ -1,6 +1,6 @@
 // COLOR RUN - Google Apps Script Integration & Form Handler
 
-const DRIVE_FOLDER_ID = '1-xJOqbMc_C4mQTP1c1_E25aI-gG6LIO4';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwf_lMukai8J6wDoRvjJIqZQYB2EnkLY-IrGs8Z-cztYAUBFdcSciF6RMfTqaiqSWpI/exec';
 let registrationData = {};
 
 // Auto-select category from URL query parameter if passed from homepage
@@ -62,8 +62,7 @@ function handlePaymentSubmit(e) {
     registrationData.fileName = file.name;
     registrationData.mimeType = file.type;
 
-    // URL is now wrapped in single quotes correctly
-    fetch('https://script.google.com/macros/s/AKfycbxnq3PArzNBtdDcu65NWJFjHC6tjX9kzibX0_mq024LTNCAk9CA854bQjgcDVk4SsTU/exec', {
+    fetch(WEB_APP_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
