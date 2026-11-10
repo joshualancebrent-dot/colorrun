@@ -3,79 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COLOR RUN | Event Registration & Payment</title>
+  <title>COLOR RUN | Registration & Payment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #17152d;
-      --paper: #fffdf8;
-      --pink: #ff4f91;
-      --purple: #8864e8;
+      --charcoal: #111318;
+      --off-white: #F8F7F2;
+      --hot-pink: #FF365E;
+      --yellow: #FFCA28;
+      --teal: #19B7A5;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E0D8;
     }
-    * { box-sizing: border-box; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0; color: var(--ink); background: var(--paper);
-      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background-color: var(--off-white);
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      padding-top: 100px;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
-    .brand { font-size: 1.15rem; font-weight: 950; }
-    .brand span { color: var(--pink); }
+
+    a { text-decoration: none; color: inherit; }
+
+    .font-display { font-family: 'Anton', sans-serif; text-transform: uppercase; }
+    .font-heading { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    .font-mono { font-family: 'Space Mono', monospace; }
+
+    header.nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(248, 247, 242, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 0;
+    }
+    .nav-container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-size: 1.35rem; font-weight: 950; letter-spacing: -0.03em; }
+    .brand span { color: var(--hot-pink); }
+
+    .container { width: min(1120px, calc(100% - 48px)); margin: auto; }
     .section { padding: 40px 0 88px; }
-    .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; }
-    .register-panel { background: white; border: 1px solid #eeeaf3; padding: 36px; border-radius: 28px; box-shadow: 0 16px 50px #17152d0b; }
-    form { display: grid; gap: 16px; }
-    label { font-size: .85rem; font-weight: 800; display: grid; gap: 7px; }
-    input, select { width: 100%; padding: 14px 15px; border: 1px solid #dedbe7; border-radius: 12px; font: inherit; }
-    .button { display: inline-flex; justify-content: center; align-items: center; padding: 14px 22px; border-radius: 999px; background: var(--ink); color: white; font-weight: 800; border: 0; cursor: pointer; }
+    .register-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: start; }
+    
+    .register-panel { 
+      background: var(--card-bg); 
+      border: 1px solid var(--border-color); 
+      padding: 40px; 
+      border-radius: 32px; 
+      box-shadow: 0 20px 50px rgba(17, 19, 24, 0.05); 
+    }
+    
+    form { display: grid; gap: 20px; }
+    label { font-size: .85rem; font-weight: 700; display: grid; gap: 8px; color: var(--charcoal); }
+    input, select { 
+      width: 100%; 
+      padding: 16px; 
+      border: 1px solid var(--border-color); 
+      border-radius: 16px; 
+      font: inherit; 
+      background: var(--off-white);
+      color: var(--charcoal);
+    }
+    
+    .button { 
+      display: inline-flex; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 16px 28px; 
+      border-radius: 999px; 
+      background: var(--charcoal); 
+      color: white; 
+      font-weight: 700; 
+      border: 0; 
+      cursor: pointer; 
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .button:hover { background: var(--hot-pink); transform: translateY(-1px); }
+    
     .step-panel { display: none; }
     .step-panel.active { display: block !important; }
-    .payment-box { background: #faf9fd; border-radius: 16px; padding: 20px; border: 1px solid #eeeaf3; margin-bottom: 20px; }
-    #status-message { display: none; padding: 16px; border-radius: 12px; font-weight: 700; background: #e9fff5; color: #146a4c; margin-top: 15px; }
+    
+    .payment-box { 
+      background: var(--off-white); 
+      border-radius: 20px; 
+      padding: 24px; 
+      border: 1px solid var(--border-color); 
+      margin-bottom: 24px; 
+    }
+    .payment-box strong { font-size: 1.1rem; display: block; margin-bottom: 8px; color: var(--hot-pink); }
+    
+    #status-message { 
+      display: none; 
+      padding: 20px; 
+      border-radius: 16px; 
+      font-weight: 600; 
+      background: rgba(25, 183, 165, 0.1); 
+      color: #0f695f; 
+      margin-top: 20px; 
+      line-height: 1.6;
+    }
+    
     @media (max-width: 760px) {
       .register-wrap { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <header class="container nav">
-    <a class="brand" href="index.html">COLOR<span>RUN</span></a>
+  <header class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand font-display">COLOR<span>RUN</span></a>
+    </div>
   </header>
 
   <main class="container section">
     <div class="register-wrap">
       <div>
-        <span style="color:#8b56d9; font-weight:900; font-size:.75rem; letter-spacing:.16em; text-transform:uppercase;">Registration Flow</span>
-        <h1 style="font-size: 2.8rem; letter-spacing: -.05em; margin: 10px 0;">Complete Your Entry</h1>
-        <p style="color: #656276; line-height: 1.6;">Fill out your runner details, proceed to GCash payment, and upload your transaction receipt for verification.</p>
+        <span class="font-mono" style="color:var(--teal); font-weight:700; font-size:.75rem; letter-spacing:.16em; text-transform:uppercase;">Registration Flow</span>
+        <h1 class="font-heading" style="font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: -.03em; margin: 12px 0 16px; line-height: 1.1;">Complete Your Entry</h1>
+        <p style="color: #656276; line-height: 1.7; font-size: 1.1rem;">Select your category, fill out your runner details, and upload your GCash receipt for verification.</p>
       </div>
 
       <div class="register-panel">
         <!-- STEP 1: Participant Info -->
         <div id="step-1" class="step-panel active">
-          <h3 style="margin-top:0;">1. Participant Details</h3>
+          <h3 class="font-heading" style="margin-top:0; font-size: 1.5rem; margin-bottom: 20px;">1. Participant Details</h3>
           <form id="info-form" onsubmit="return false;">
-            <label>Full name<input id="form-name" type="text" placeholder="Your full name" required></label>
-            <label>Email address<input id="form-email" type="email" placeholder="you@example.com" required></label>
-            <label>Contact number<input id="form-phone" type="tel" placeholder="09XXXXXXXXX" required></label>
-            <label>Race category
+            <label>Full Name
+              <input id="form-name" type="text" placeholder="e.g. Juan dela Cruz" required>
+            </label>
+            <label>Email Address
+              <input id="form-email" type="email" placeholder="you@example.com" required>
+            </label>
+            <label>Contact Number
+              <input id="form-phone" type="tel" placeholder="09XXXXXXXXX" required>
+            </label>
+            <label>Race Category
               <select id="category-select" required>
                 <option value="">Select distance category</option>
-                <option value="3KM">3KM Run (Early: $25 / Regular: $35)</option>
-                <option value="5KM">5KM Run (Early: $35 / Regular: $45)</option>
-                <option value="10KM">10KM Run (Early: $45 / Regular: $55)</option>
+                <option value="3KM">3KM Run</option>
+                <option value="5KM">5KM Run</option>
+                <option value="10KM">10KM Run</option>
               </select>
             </label>
-            <button class="button" type="button" id="proceed-btn">PROCEED TO PAYMENT ↗</button>
+            <button class="button font-heading" type="button" id="proceed-btn" style="margin-top: 8px;">Proceed to Payment ↗</button>
           </form>
         </div>
 
         <!-- STEP 2: GCash Payment & Receipt Upload -->
         <div id="step-2" class="step-panel">
-          <h3 style="margin-top:0;">2. GCash Payment & Receipt</h3>
+          <h3 class="font-heading" style="margin-top:0; font-size: 1.5rem; margin-bottom: 20px;">2. GCash Payment & Receipt</h3>
           <div class="payment-box">
             <strong>Send Payment via GCash</strong>
-            <div>Account Name: <strong>COLOR RUN PH</strong></div>
+            <div style="margin-bottom: 6px;">Account Name: <strong>COLOR RUN PH</strong></div>
             <div>Account Number: <strong>0917-123-4567</strong></div>
           </div>
           
@@ -83,7 +178,7 @@
             <label>Upload GCash Receipt Image
               <input type="file" id="receipt-file" accept="image/*" required>
             </label>
-            <button class="button" type="submit" id="submit-btn">SUBMIT RECEIPT FOR VERIFICATION ↗</button>
+            <button class="button font-heading" type="submit" id="submit-btn" style="margin-top: 8px;">Submit Receipt for Verification ↗</button>
           </form>
           <div id="status-message"></div>
         </div>
