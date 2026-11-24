@@ -107,7 +107,28 @@
       margin-bottom: 24px; 
     }
     .payment-box strong { font-size: 1.1rem; display: block; margin-bottom: 8px; color: var(--hot-pink); }
-    
+    .brand-lockup {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.brand-logo {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.brand-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  line-height: 1.1;
+}
     #status-message { 
       display: none; 
       padding: 20px; 
@@ -127,7 +148,10 @@
 <body>
   <header class="nav">
     <div class="nav-container">
-      <a href="index.html" class="brand font-display">COLOR<span>RUN</span></a>
+     <a href="index.html" class="brand-lockup">
+  <img src="images/csc-logo.png" alt="AUP-CSC Organizing Body Logo" class="brand-logo">
+  <span class="brand-sub font-mono">AUP-CSC</span>
+</a>
     </div>
   </header>
 
