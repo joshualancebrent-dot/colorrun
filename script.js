@@ -71,7 +71,7 @@ function handlePaymentSubmit(e) {
     .then(() => {
       submitBtn.style.display = "none";
       statusMsg.style.display = "block";
-      statusMsg.innerHTML = "Registration submitted successfully!<br><br>We are verifying your GCash payment. Once confirmed, your official Race Bib Number will be sent to <strong>" + registrationData.email + "</strong>.";
+      statusMsg.innerHTML = "<strong>Registration submitted successfully!<br><br>We are verifying your GCash payment. Once confirmed, your official Race Bib Number will be sent to" + registrationData.email + "</strong>.";
     })
     .catch(err => {
       console.error(err);
